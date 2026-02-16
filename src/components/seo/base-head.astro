@@ -1,0 +1,106 @@
+---
+import "src/styles/global.css";
+import { SITE_TITLE } from "@data/index";
+
+interface Props {
+	title: string;
+	description: string;
+	image?: string;
+	type?: "website" | "article";
+	publishedTime?: Date;
+	modifiedTime?: Date;
+	author?: string;
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const {
+	title,
+	description,
+	image = "/images/ogimage.png",
+	type = "website",
+	publishedTime,
+	modifiedTime,
+	author = "Keerthi Kovuru",
+} = Astro.props;
+
+const resolvedImage = new URL(image, Astro.url);
+const isHome = Astro.url.pathname === "/";
+const fullTitle = isHome ? title : `${title} | Keerthi Kovuru`;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="generator" content={Astro.generator} />
+
+<link rel="canonical" href={canonicalURL} />
+
+<title>{fullTitle}</title>
+<meta name="title" content={fullTitle} />
+<meta name="description" content={description} />
+<meta name="author" content={author} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={resolvedImage} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={fullTitle} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={resolvedImage} />
+
+<!-- JSON-LD Structured Data -->
+{
+	type === "website" ? (
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify({
+				"@context": "https://schema.org",
+				"@type": "WebSite",
+				name: SITE_TITLE,
+				url: Astro.site?.toString(),
+				description: description,
+				author: {
+					"@type": "Person",
+					name: "Keerthi Kovuru",
+					url: Astro.site?.toString(),
+					sameAs: ["https://www.linkedin.com/in/keerthikovuru"],
+				},
+			})}
+		/>
+	) : (
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify({
+				"@context": "https://schema.org",
+				"@type": "Article",
+				headline: title,
+				description: description,
+				image: resolvedImage.toString(),
+				url: canonicalURL.toString(),
+				datePublished: publishedTime?.toISOString(),
+				dateModified: (modifiedTime ?? publishedTime)?.toISOString(),
+				author: {
+					"@type": "Person",
+					name: "Keerthi Kovuru",
+					url: Astro.site?.toString(),
+				},
+				publisher: {
+					"@type": "Person",
+					name: "Keerthi Kovuru",
+					url: Astro.site?.toString(),
+				},
+				mainEntityOfPage: {
+					"@type": "WebPage",
+					"@id": canonicalURL.toString(),
+				},
+			})}
+		/>
+	)
+}
