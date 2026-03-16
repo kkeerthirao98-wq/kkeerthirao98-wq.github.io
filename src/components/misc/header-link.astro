@@ -15,10 +15,10 @@ const isActive = href === pathname || href === `/${subpath?.[0]}`;
 	href={href}
 	class={clsx(
 		"relative transition-colors duration-200 ease-in-out",
-		"hover:text-black dark:hover:text-white",
+		"hover:text-black  ",
 		isActive
-			? "text-black dark:text-white font-medium"
-			: "text-gray-500 dark:text-gray-400 font-medium hover:text-gray-900 dark:hover:text-gray-200",
+			? "text-black font-medium"
+			: "text-gray-500 font-medium hover:text-gray-900  ",
 		className,
 	)}
 	{...props}

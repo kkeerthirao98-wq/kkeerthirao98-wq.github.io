@@ -4,7 +4,9 @@ import { getCollection } from "astro:content";
 
 export async function GET(context) {
 	const [thoughts] = await Promise.all([
-		getCollection("thought"),
+		getCollection("thought").then((t) =>
+			t.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+		),
 	]);
 
 	return rss({

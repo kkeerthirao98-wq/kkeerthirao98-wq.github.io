@@ -1,0 +1,32 @@
+---
+title: "The EU AI Act's August Deadline Is a Controls Problem, Not a Legal One"
+description: "Security teams waiting for legal to hand them a checklist in June 2026 will not make the August deadline. This requires the same rigor as a SOC 2 readiness engagement."
+category: 'security'
+pubDate: '2026-03-05'
+updatedDate: '2026-03-05'
+readingTime: 3
+---
+
+The EU AI Act full application deadline for high-risk AI systems is August 2, 2026. Penalties exceed GDPR — up to €35 million or 7% of global annual turnover for the most serious violations.
+
+Legal teams are treating this as a documentation exercise. Security teams should be treating it as a controls implementation project — and they should have started six months ago.
+
+Here's the scope: Annex III of the Act covers AI systems used in biometric identification, critical infrastructure, employment or HR screening, access to essential financial services, and law enforcement-adjacent decisions. If your organization uses an AI tool to screen job applicants, prioritize loan applications, or flag security alerts that feed into operational decisions — you are likely in scope.
+
+The high-risk requirements aren't just policy commitments. They require demonstrable technical controls:
+
+- A risk management system with documented residual risks
+- Data governance controls covering training data provenance
+- Technical documentation and version control for model artifacts
+- Human oversight mechanisms — not just a policy that says "a human reviews outputs," but an auditable workflow showing that human intervention actually occurs
+- Audit logging for AI system inputs, outputs, and decisions
+
+This maps cleanly onto NIST AI RMF, which in turn maps well to NIST 800-53 controls most enterprise security programs already have in scope. The translation isn't hard. The work is.
+
+The gap I see in most programs: no AI system inventory. You cannot classify risk you haven't catalogued. Step one is a full audit of every AI system touching the categories above — tools your vendors provide, tools your product teams have deployed, tools individual business units bought on a corporate card and never told IT about.
+
+Step two is classification. Most organizations will find that a handful of their systems are clearly high-risk and most are minimal-risk. Focus effort accordingly.
+
+Step three is gap assessment against the Annex III requirements. For any high-risk system, where are the audit logs? Where is the human oversight mechanism? Who owns model version control?
+
+If you're doing this in June 2026, you will not be done by August. Build this into your Q1 security roadmap now and treat it like a readiness engagement, not a legal filing.

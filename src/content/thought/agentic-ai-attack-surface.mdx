@@ -1,0 +1,30 @@
+---
+title: "OWASP Just Published a Top 10 for Agentic AI. Read It."
+description: "AI agents that can read email, call APIs, and write to systems inherit all your trust assumptions — but with no judgment about when to override them."
+category: 'ai'
+pubDate: '2026-03-01'
+updatedDate: '2026-03-01'
+readingTime: 3
+---
+
+In December 2025, OWASP published its Top 10 for Agentic AI Security. The #1 risk is "Agent Goal Hijacking" via prompt injection — an attacker embeds malicious instructions in an email, document, or web page that an agent reads, and the agent cannot reliably distinguish data from commands.
+
+This is not theoretical. Q4 2025 saw the first documented wave of in-the-wild agent attacks. And with Model Context Protocol (MCP) — the emerging standard for how AI agents connect to external tools — now shipping with its own OWASP Top 10 covering tool poisoning, context spoofing, and hard-coded credentials in agent logs, the attack surface is growing faster than most security teams are tracking.
+
+Only 29% of organizations report they're prepared to secure agentic AI deployments (Help Net Security, February 2026). I believe that number is optimistic.
+
+Here's why this is structurally different from securing an API or a web app: agents operate with elevated permissions. They read your email, call your APIs, write to your systems. They inherit every trust assumption their human principal had — but they have no judgment about when those assumptions should be overridden.
+
+A phishing email your analyst would delete becomes instructions an agent executes. A malicious document in a shared drive poisons your agent's next batch of decisions.
+
+Traditional AppSec controls don't transfer cleanly here. A WAF doesn't stop prompt injection. Input validation doesn't work when "the input" is a business document in natural language.
+
+What actually needs to happen:
+
+**Treat agent identity as an IAM problem.** Every agent should operate under a named identity with defined scope. Least privilege applies. An agent that drafts emails doesn't need to send them. An agent that reads Jira doesn't need to write to production systems.
+
+**Define and enforce blast radius.** Before deploying an agent, answer: if this agent were compromised and acted adversarially for 4 hours, what could it touch? That scope should be the minimum necessary, not the maximum convenient.
+
+**Build interrupt mechanisms.** Humans need override capability. Not as an afterthought — as a first-class architectural requirement.
+
+The identity perimeter used to be your users. Now it includes every agent running in your environment with permissions attached to it. The security model needs to catch up.

@@ -19,22 +19,25 @@ const thoughts = (await getCollection("thought")).sort(
 		/>
 	</head>
 	<RootLayout>
-		<div id="navbar+title" class="flex flex-col w-full gap-6 max-w-xl">
+		<div id="navbar+title" class="flex flex-col w-full gap-6">
 			<Header />
-			<h1 class="w-full text-7xl font-medium tracking-tight mb-6">
+			<h1 class="w-full text-[min(12vw,72px)] font-medium tracking-tight mb-6">
 				Thoughts
 			</h1>
 
 			{
-				thoughts.map((thought, i) => (
-					<ThoughtsItem
-						category={thought.data.category}
-						content={thought.data.description}
-						pubDate={thought.data.pubDate}
-						slug={thought.slug}
-						index={i}
-					/>
-				))
+				thoughts.length === 0 ? (
+					<p class="text-gray-400 text-sm">no posts yet.</p>
+				) : (
+					thoughts.map((thought) => (
+						<ThoughtsItem
+							category={thought.data.category}
+							title={thought.data.title}
+							pubDate={thought.data.pubDate}
+							slug={thought.slug}
+						/>
+					))
+				)
 			}
 		</div>
 	</RootLayout>

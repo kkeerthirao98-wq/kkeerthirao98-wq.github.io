@@ -9,24 +9,14 @@ export const GET: APIRoute = async () => {
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>${new URL("/writings", import.meta.env.SITE).href}</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>${new URL("/thoughts", import.meta.env.SITE).href}</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>${new URL("/ships", import.meta.env.SITE).href}</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>${new URL("/me", import.meta.env.SITE).href}</loc>
+    <loc>${new URL("/experience", import.meta.env.SITE).href}</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
 </urlset>`;
 

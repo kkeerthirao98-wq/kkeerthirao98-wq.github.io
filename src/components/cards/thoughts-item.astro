@@ -1,33 +1,35 @@
 ---
 import FormattedDate from "@components/misc/formatted-date.astro";
-import { clsx, getCategoryColor } from "@utils/index";
 
-const { category, content, pubDate, index, slug } = Astro.props;
+function getCategoryAccentBg(category: string): string {
+	switch (category) {
+		case "ai": return "bg-yellow-400";
+		case "design": return "bg-lime-400";
+		case "product": return "bg-green-400";
+		case "engineering": return "bg-purple-400";
+		case "productivity": return "bg-pink-400";
+		case "learning": return "bg-blue-400";
+		case "opensource": return "bg-orange-400";
+		case "security": return "bg-orange-500";
+		case "thoughts": return "bg-red-400";
+		case "tools": return "bg-cyan-400";
+		case "work": return "bg-teal-400";
+		default: return "bg-gray-300";
+	}
+}
+
+const { category, title, pubDate, slug } = Astro.props;
+const accentBg = getCategoryAccentBg(category);
 ---
 
-<a href={`/${slug}`}>
-	<article
-		id={category}
-		class={clsx(
-			"flex flex-col w-full items-center justify-between gap-3 p-6 relative transition-all duration-75 ease-in-out",
-			getCategoryColor(category), // set the background color based on category
-			index % 2 === 0
-				? "rotate-1 hover:rotate-0"
-				: "-rotate-1 hover:-rotate-0", // rotate the card
-		)}
-	>
-		<span class="absolute top-3 right-3 text-5xl text-gray-700">"</span>
-		<h5 class="text-gray-900 dark:text-gray-900 w-full font-medium text-md">
-			Keerthi on
-			<span class="underline decoration-wavy">{category}</span>
-		</h5>
-		<h1
-			class="text-black dark:text-black font-medium w-full sm:text-xl md:text-2xl indent-9"
-		>
-			{content}
-		</h1>
-		<p class="text-black w-full text-end font-medium text-sm">
-			<FormattedDate date={pubDate} />
+<a href={`/thoughts/${slug}`} class="group block">
+	<article class="relative flex flex-col gap-3 pl-6 pr-5 py-5 border border-gray-100 rounded-xl bg-white hover:bg-gray-50 overflow-hidden transition-colors duration-150">
+		<div class={`absolute left-0 top-0 bottom-0 w-[3px] ${accentBg}`}></div>
+		<h2 class="text-base font-semibold text-gray-900 leading-snug group-hover:text-orange-600 transition-colors">
+			{title}
+		</h2>
+		<p class="text-xs text-gray-400 text-right font-medium">
+			<FormattedDate date={pubDate.toString()} />
 		</p>
 	</article>
 </a>

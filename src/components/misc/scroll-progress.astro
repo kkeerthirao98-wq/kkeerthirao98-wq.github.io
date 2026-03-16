@@ -1,20 +1,23 @@
-<div id='progress-container'>
+<button
+	id='progress-container'
+	aria-label='Scroll to top'
+	style='background:none;border:none;padding:0;'>
 	<svg
 		id='progress-circle'
 		viewBox='0 0 36 36'>
 		<path
 			class='circle-bg'
 			d='M18 2.0845
-            a 15.9155 15.9155 0 0 1 0 31.831
-            a 15.9155 15.9155 0 0 1 0 -31.831'
+    a 15.9155 15.9155 0 0 1 0 31.831
+    a 15.9155 15.9155 0 0 1 0 -31.831'
 		></path>
 		<path
 			id='progress'
 			class='circle'
 			stroke-dasharray='0, 100'
 			d='M18 2.0845
-            a 15.9155 15.9155 0 0 1 0 31.831
-            a 15.9155 15.9155 0 0 1 0 -31.831'
+    a 15.9155 15.9155 0 0 1 0 31.831
+    a 15.9155 15.9155 0 0 1 0 -31.831'
 		></path>
 	</svg>
 	<svg
@@ -30,7 +33,7 @@
 		class='lucide lucide-chevron-up'>
 		<path d='m18 15-6-6-6 6'></path>
 	</svg>
-</div>
+</button>
 
 <style>
 	#progress-container {
@@ -83,7 +86,7 @@
 		if (progress) {
 			progress.style.strokeDasharray = `${scrollPercent}, 100`;
 		}
-	});
+	}, { passive: true });
 
 	const progressContainer = document.getElementById('progress-container');
 	if (progressContainer) {

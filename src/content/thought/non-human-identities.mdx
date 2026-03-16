@@ -1,0 +1,28 @@
+---
+title: "Your Service Accounts Are More Dangerous Than Your Users"
+description: "Non-human identities now outnumber humans 82:1 in enterprise environments — and almost none of them go through an offboarding process."
+category: 'security'
+pubDate: '2026-02-28'
+updatedDate: '2026-02-28'
+readingTime: 3
+---
+
+The M&S breach ran for six weeks and cost an estimated £270-440 million. The Jaguar Land Rover attack shut down production across all plants — analysts put the UK economic impact at £1.9 billion, making it arguably the most damaging cyberattack in British corporate history. Both attributed to Scattered Spider / Lapsus$. Both pivoted through compromised service account credentials and token manipulation.
+
+Neither attack required breaking encryption or exploiting a zero-day. They walked through doors that were left open for a microservice nobody deployed in two years.
+
+Here's the structural problem: non-human identities — service accounts, API keys, OAuth tokens, CI/CD pipeline credentials, managed identities — now outnumber human identities by roughly 82:1 across enterprises. In most of the organizations I've assessed, nobody can map more than 40% of them to a current business purpose.
+
+You almost certainly have this problem right now. Open your Azure Entra ID tenant and look at the app registrations. Count how many have "owner: unknown" or owners who left the company. That's your blast radius.
+
+The governance gap isn't tooling. It's that we never built the human-identity equivalent of a joiner-mover-leaver process for machine identities. There's no HR system that fires an API key when a project is cancelled. No automatic expiry on a service account created for a vendor integration that ended in 2023.
+
+Three things that actually move the needle here:
+
+**Ownership as a first-class requirement.** Every service account should have a named human owner on record. No owner = disabled. This is non-negotiable in a mature program.
+
+**Expiry by default.** All tokens, API keys, and service account credentials should have a maximum lifetime. Rotation at 90 days is not a compliance checkbox — it limits the window of exposure for credentials you don't know are compromised.
+
+**Quarterly privilege reviews.** Same cadence as PAM reviews for human accounts. If a service account hasn't called a permission in 90 days, that permission should be removed.
+
+The attackers don't care whether they're in as a human or a machine. The identity perimeter is your perimeter now. Non-human identities are the gap in it.

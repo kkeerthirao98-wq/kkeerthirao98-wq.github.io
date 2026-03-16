@@ -102,25 +102,6 @@
     --color-cat-work: #5eead4;        /* teal-300 */
   }
 
-  .dark {
-    --color-bg: #000000;
-    --color-bg-subtle: #111827;       /* gray-900 */
-    --color-bg-muted: #1f2937;        /* gray-800 */
-
-    --color-text: #ffffff;
-    --color-text-secondary: #6b7280;  /* gray-500 */
-    --color-text-muted: #9ca3af;      /* gray-400 */
-    --color-text-body: #d1d5db;       /* gray-300 */
-
-    --color-border: #374151;          /* gray-700 */
-    --color-border-strong: #4b5563;   /* gray-600 */
-
-    --color-accent-writing: #fb923c;       /* orange-400 */
-    --color-accent-writing-bg: #431407;    /* orange-950 */
-    --color-accent-thoughts: #f87171;      /* red-400 */
-    --color-accent-thoughts-bg: #450a0a;   /* red-950 */
-  }
-
   /* ——— base styles ——— */
   html {
     @apply scroll-smooth;
@@ -129,7 +110,7 @@
   body {
     font-family: var(--font-body);
     font-weight: var(--fw-medium);
-    @apply bg-white text-black dark:bg-black dark:text-white;
+    @apply bg-white text-black;
   }
 
   h1, h2, h3, h4, h5, h6 {
