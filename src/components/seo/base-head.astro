@@ -1,5 +1,6 @@
 ---
 import "src/styles/global.css";
+import { ClientRouter } from "astro:transitions";
 import { SITE_TITLE } from "@data/index";
 
 interface Props {
@@ -27,15 +28,22 @@ const {
 const resolvedImage = new URL(image, Astro.url);
 const isHome = Astro.url.pathname === "/";
 const fullTitle = isHome ? title : `${title} | Keerthi Kovuru`;
+const serializeJsonLd = (value: unknown) =>
+	JSON.stringify(value)
+		.replace(/</g, "\\u003c")
+		.replace(/>/g, "\\u003e")
+		.replace(/&/g, "\\u0026")
+		.replace(/\u2028/g, "\\u2028")
+		.replace(/\u2029/g, "\\u2029");
 ---
 
 <meta charset="utf-8" />
-<link rel="alternate" type="application/rss+xml" title="RSS Feed for keerthikovuru.com" href="/rss.xml" />
+<link rel="alternate" type="application/rss+xml" title="rss feed for keerthikovuru.com" href="/rss.xml" />
 <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
-<link rel="manifest" href="/manifest.json" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
+<ClientRouter />
 
 <link rel="canonical" href={canonicalURL} />
 
@@ -61,9 +69,10 @@ const fullTitle = isHome ? title : `${title} | Keerthi Kovuru`;
 <!-- JSON-LD Structured Data -->
 {
 	type === "website" ? (
-		<script
-			type="application/ld+json"
-			set:html={JSON.stringify({
+			<script
+				is:inline
+				type="application/ld+json"
+				set:html={serializeJsonLd({
 				"@context": "https://schema.org",
 				"@type": "WebSite",
 				name: SITE_TITLE,
@@ -78,9 +87,10 @@ const fullTitle = isHome ? title : `${title} | Keerthi Kovuru`;
 			})}
 		/>
 	) : (
-		<script
-			type="application/ld+json"
-			set:html={JSON.stringify({
+			<script
+				is:inline
+				type="application/ld+json"
+				set:html={serializeJsonLd({
 				"@context": "https://schema.org",
 				"@type": "Article",
 				headline: title,

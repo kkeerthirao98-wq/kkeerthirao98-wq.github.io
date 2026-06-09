@@ -1,28 +1,26 @@
 ---
-title: "Your Service Accounts Are More Dangerous Than Your Users"
-description: "Non-human identities now outnumber humans 82:1 in enterprise environments — and almost none of them go through an offboarding process."
+title: "Service accounts need an offboarding process too"
+description: "Machine identities now outnumber humans by a wide margin, but many programs still govern them like temporary exceptions."
 category: 'security'
 pubDate: '2026-02-28'
-updatedDate: '2026-02-28'
+updatedDate: '2026-06-08'
 readingTime: 3
 ---
 
-The M&S breach ran for six weeks and cost an estimated £270-440 million. The Jaguar Land Rover attack shut down production across all plants — analysts put the UK economic impact at £1.9 billion, making it arguably the most damaging cyberattack in British corporate history. Both attributed to Scattered Spider / Lapsus$. Both pivoted through compromised service account credentials and token manipulation.
+Machine identities are no longer background plumbing. Service accounts, API keys, OAuth clients, CI/CD tokens, certificates, and managed identities now carry a large part of enterprise access.
 
-Neither attack required breaking encryption or exploiting a zero-day. They walked through doors that were left open for a microservice nobody deployed in two years.
+CyberArk's 2025 identity research put the ratio at [82 machine identities for every human identity](https://www.cyberark.com/press/machine-identities-outnumber-humans-by-more-than-80-to-1-new-report-exposes-the-exponential-threats-of-fragmented-identity-security/). Whether the exact ratio inside a given company is lower or higher, the direction is obvious: cloud and automation create identities faster than most governance programs can review them.
 
-Here's the structural problem: non-human identities — service accounts, API keys, OAuth tokens, CI/CD pipeline credentials, managed identities — now outnumber human identities by roughly 82:1 across enterprises. In most of the organizations I've assessed, nobody can map more than 40% of them to a current business purpose.
+The weak point is lifecycle management. Human identities usually have a joiner-mover-leaver process. Machine identities often do not. A project ends, a vendor integration changes, an engineer leaves, a pipeline is replaced, and the credential continues to exist because nothing triggered review.
 
-You almost certainly have this problem right now. Open your Azure Entra ID tenant and look at the app registrations. Count how many have "owner: unknown" or owners who left the company. That's your blast radius.
+You can see this quickly in Azure Entra ID app registrations, cloud IAM roles, secrets managers, and CI/CD variables. Look for unknown owners, stale last-used dates, long-lived secrets, broad permissions, and credentials created for one-time migrations.
 
-The governance gap isn't tooling. It's that we never built the human-identity equivalent of a joiner-mover-leaver process for machine identities. There's no HR system that fires an API key when a project is cancelled. No automatic expiry on a service account created for a vendor integration that ended in 2023.
+Three controls move the needle:
 
-Three things that actually move the needle here:
+**Ownership as a requirement.** Every service account should have a named human owner. No owner means the account is disabled, rotated, or moved into exception review.
 
-**Ownership as a first-class requirement.** Every service account should have a named human owner on record. No owner = disabled. This is non-negotiable in a mature program.
+**Expiry by default.** Long-lived credentials should be rare. Expiry and rotation force teams to prove the identity still has a business purpose.
 
-**Expiry by default.** All tokens, API keys, and service account credentials should have a maximum lifetime. Rotation at 90 days is not a compliance checkbox — it limits the window of exposure for credentials you don't know are compromised.
+**Quarterly privilege reviews.** Same idea as human privileged access reviews. If a service account has not used a permission in 90 days, remove it or document why it remains.
 
-**Quarterly privilege reviews.** Same cadence as PAM reviews for human accounts. If a service account hasn't called a permission in 90 days, that permission should be removed.
-
-The attackers don't care whether they're in as a human or a machine. The identity perimeter is your perimeter now. Non-human identities are the gap in it.
+Attackers do not care whether access came from a person or a machine. The control surface is identity, and machine identity governance has to become as routine as user access review.

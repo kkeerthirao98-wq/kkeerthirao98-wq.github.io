@@ -1,11 +1,11 @@
+import { getCollection } from "astro:content";
 import rss from "@astrojs/rss";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@data/index";
-import { getCollection } from "astro:content";
 
 export async function GET(context) {
 	const [thoughts] = await Promise.all([
 		getCollection("thought").then((t) =>
-			t.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+			t.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
 		),
 	]);
 
@@ -18,9 +18,9 @@ export async function GET(context) {
 				title: thought.data.title,
 				pubDate: thought.data.pubDate,
 				description: thought.data.description,
-				link: `/thoughts/${thought.slug}/`,
+				link: `/thoughts/${thought.id}/`,
 			})),
 		],
-		customData: `<language>en-us</language>`,
+		customData: "<language>en-us</language>",
 	});
 }

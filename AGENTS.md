@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
 
 ## Rules
 
@@ -28,7 +28,7 @@ This is an Astro-based personal website deployed to Cloudflare Pages with server
 
 ### Content Collections
 
-Content lives in `src/content/` with one collection defined in `src/content.config.ts`:
+Content lives in `src/content/` with one collection defined in `src/content/config.ts`:
 - **thought** - Short-form security writing with title, description, category, pubDate, updatedDate, readingTime, and optional showTldr flag
 
 ### Path Aliases

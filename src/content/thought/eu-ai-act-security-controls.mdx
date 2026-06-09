@@ -1,32 +1,28 @@
 ---
-title: "The EU AI Act's August Deadline Is a Controls Problem, Not a Legal One"
-description: "Security teams waiting for legal to hand them a checklist in June 2026 will not make the August deadline. This requires the same rigor as a SOC 2 readiness engagement."
+title: "The EU AI Act delay does not remove the controls problem"
+description: "The 2026 simplification package changes the timeline for some high-risk systems, but it does not change the work security teams need to do."
 category: 'security'
 pubDate: '2026-03-05'
-updatedDate: '2026-03-05'
+updatedDate: '2026-06-08'
 readingTime: 3
 ---
 
-The EU AI Act full application deadline for high-risk AI systems is August 2, 2026. Penalties exceed GDPR — up to €35 million or 7% of global annual turnover for the most serious violations.
+As of June 2026, the EU AI Act timeline is moving. The Council and Parliament reached a provisional agreement to simplify implementation, and the Commission says rules for many high-risk systems used in areas such as biometrics, critical infrastructure, education, employment, migration, and essential services will apply from [December 2, 2027](https://digital-strategy.ec.europa.eu/en/news/eu-agrees-simplify-ai-rules-boost-innovation-and-ban-nudification-apps-protect-citizens). High-risk systems embedded in products move to August 2, 2028.
 
-Legal teams are treating this as a documentation exercise. Security teams should be treating it as a controls implementation project — and they should have started six months ago.
+That delay helps. It does not make this a legal-only exercise.
 
-Here's the scope: Annex III of the Act covers AI systems used in biometric identification, critical infrastructure, employment or HR screening, access to essential financial services, and law enforcement-adjacent decisions. If your organization uses an AI tool to screen job applicants, prioritize loan applications, or flag security alerts that feed into operational decisions — you are likely in scope.
+Security teams still need the same basic control foundation: an inventory of AI systems, risk classification, owners, logging, human oversight, data governance, model documentation, vendor evidence, and a way to prove the workflow actually operates as described.
 
-The high-risk requirements aren't just policy commitments. They require demonstrable technical controls:
+The biggest gap I see is inventory. You cannot classify risk you have not catalogued. That includes vendor tools, product features, analytics models, AI-enabled security tools, and business-unit purchases that may never have gone through central review.
 
-- A risk management system with documented residual risks
-- Data governance controls covering training data provenance
-- Technical documentation and version control for model artifacts
-- Human oversight mechanisms — not just a policy that says "a human reviews outputs," but an auditable workflow showing that human intervention actually occurs
-- Audit logging for AI system inputs, outputs, and decisions
+Once the inventory exists, the control questions become practical:
 
-This maps cleanly onto NIST AI RMF, which in turn maps well to NIST 800-53 controls most enterprise security programs already have in scope. The translation isn't hard. The work is.
+- Where are inputs, outputs, and decisions logged?
+- Who owns model/version changes?
+- What evidence proves human oversight happened?
+- Which vendors process sensitive data or produce operational decisions?
+- What residual risks were accepted, and by whom?
 
-The gap I see in most programs: no AI system inventory. You cannot classify risk you haven't catalogued. Step one is a full audit of every AI system touching the categories above — tools your vendors provide, tools your product teams have deployed, tools individual business units bought on a corporate card and never told IT about.
+This maps well to security work companies already understand: SOC 2 readiness, NIST 800-53 control evidence, vendor risk reviews, data governance, and access logging. The hard part is not translating the regulation. The hard part is finding every AI system and getting control evidence before audit pressure arrives.
 
-Step two is classification. Most organizations will find that a handful of their systems are clearly high-risk and most are minimal-risk. Focus effort accordingly.
-
-Step three is gap assessment against the Annex III requirements. For any high-risk system, where are the audit logs? Where is the human oversight mechanism? Who owns model version control?
-
-If you're doing this in June 2026, you will not be done by August. Build this into your Q1 security roadmap now and treat it like a readiness engagement, not a legal filing.
+The better move is to treat the extra time as remediation time, not waiting time.

@@ -1,13 +1,13 @@
 ---
-import ThoughtsLayout from "@layouts/thoughts-layout.astro";
+import { getCollection, render } from "astro:content";
 import { ScrollProgress } from "@components/misc";
-import { getCollection } from "astro:content";
+import ThoughtsLayout from "@layouts/thoughts-layout.astro";
 import { getReadingTime } from "@utils/index";
 
 export async function getStaticPaths() {
 	const thoughts = await getCollection("thought");
 	return thoughts.map((thought) => ({
-		params: { slug: thought.slug },
+		params: { slug: thought.id },
 		props: { thought },
 	}));
 }
@@ -15,8 +15,8 @@ export async function getStaticPaths() {
 const { thought } = Astro.props;
 
 const post = thought;
-const { Content } = await post.render();
-const readingTime = getReadingTime(post.body);
+const { Content } = await render(post);
+const readingTime = getReadingTime(post.body ?? "");
 const ogImage = "/images/ogimage.png";
 ---
 

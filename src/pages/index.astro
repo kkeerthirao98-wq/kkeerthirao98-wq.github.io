@@ -1,21 +1,59 @@
 ---
+import { getCollection } from "astro:content";
 import { Header } from "@components/misc";
 import { BaseHead } from "@components/seo";
 import { SITE_DESCRIPTION, socialLinks } from "@data/index";
 import RootLayout from "@layouts/root-layout.astro";
-import { getCollection } from "astro:content";
 
 const thoughts = (await getCollection("thought")).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 const latestThought = thoughts[0];
+
+const proofPoints = [
+	{
+		value: "500+",
+		label: "third-party risk assessments reviewed",
+	},
+	{
+		value: "3 cloud",
+		label: "AWS, Azure, and GCP control exposure",
+	},
+	{
+		value: "AI risk",
+		label: "vendor, agent, and governance focus for 2026",
+	},
+];
+
+const expertiseGroups = [
+	{
+		label: "certifications",
+		items: [
+			"CompTIA Security+",
+			"ISO 27001 Lead Implementer",
+			"Impact Day 2024",
+		],
+	},
+	{
+		label: "cloud & identity",
+		items: ["AWS", "GCP", "Azure Entra ID", "Zero Trust", "MDM (Intune)"],
+	},
+	{
+		label: "governance & risk",
+		items: ["NIST 800-53", "SOC 2 Type II", "ISO 27001", "HIPAA", "PCI-DSS"],
+	},
+	{
+		label: "ops, tools & data",
+		items: ["Sentinel", "Splunk", "Defender", "Nessus", "SQL", "Power BI"],
+	},
+];
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead
-			title="Keerthi Kovuru — Cyber Security Analyst"
+			title="Keerthi Kovuru - Security Analyst"
 			description={SITE_DESCRIPTION}
 			image="/images/ogimage.png"
 		/>
@@ -23,24 +61,18 @@ const latestThought = thoughts[0];
 
 	<RootLayout>
 		<Header />
-		<div class="flex flex-col gap-8 sm:gap-14 mt-8 mb-8">
-			<div
-				class="relative flex flex-col-reverse sm:flex-row items-center gap-6 sm:gap-10 w-full"
-			>
-				<div class="flex flex-col gap-3 flex-1 relative">
-					<h1
-						class="w-full text-start text-[min(12vw,72px)] font-bold leading-[0.95] tracking-tight text-gray-900  "
-					>
-						Keerthi Kovuru
+		<main class="home-flow mb-12">
+			<section class="home-hero">
+				<div class="hero-copy">
+					<h1 class="hero-name">
+						<span class="block">Keerthi</span>
+						<span class="block">Kovuru</span>
 					</h1>
-					<div class="flex flex-col gap-1">
-						<span
-							class="text-2xl sm:text-3xl text-gray-500 font-medium tracking-tight"
-							>Security Analyst & Consultant.</span
-						>
-						<div
-							class="flex items-center gap-2 text-gray-500 mt-2"
-						>
+					<div class="hero-details flex flex-col gap-1">
+						<span class="hero-role">
+							Security analyst focused on identity, cloud risk, and AI governance.
+						</span>
+						<div class="flex items-center gap-2 text-content-secondary mt-2">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="16"
@@ -53,227 +85,119 @@ const latestThought = thoughts[0];
 								stroke-linejoin="round"
 								class="w-4 h-4"
 							>
-								<path
-									d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
-								></path>
+								<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
 								<circle cx="12" cy="10" r="3"></circle>
-							</svg>
-							<span
-								class="text-sm font-medium tracking-wide border-b border-dashed border-gray-300 pb-0.5"
-								>Lansing, Michigan, USA</span
-							>
+								</svg>
+							<span class="text-sm font-medium tracking-[0.01em] border-b border-dashed border-line-strong pb-0.5">
+								Lansing, Michigan, USA
+							</span>
 						</div>
 					</div>
 				</div>
-				<div class="relative group">
-					<div
-						class="absolute -inset-0.5 bg-gradient-to-tr from-orange-500 to-purple-600 rounded-[2rem] blur opacity-30 group-hover:opacity-60 transition duration-500"
-					>
-					</div>
+
+				<div class="portrait-frame hero-portrait">
 					<img
 						src="/images/headshot.jpg"
 						alt="Keerthi Kovuru"
 						width="224"
 						height="224"
-						class="relative w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-[1.8rem] object-cover shadow-2xl transition-transform duration-500 ease-out group-hover:scale-[1.01]"
+						class="portrait-image"
 					/>
 				</div>
-			</div>
+			</section>
 
-			<div id="about" class="flex flex-col gap-10">
-				<div
-					class="text-lg sm:text-xl text-gray-700 leading-relaxed font-normal max-w-prose"
-				>
-					I secure digital ecosystems for global organizations. With
-					over 5 years in the field, I’ve managed risk and cloud
-					security for companies like <strong
-						class="text-black font-medium"
-						>Meta</strong
-					> and <strong class="text-black font-medium"
-						>FIFA</strong
-					>. My work bridges the gap between compliance and technical
-					defense.
+			<section id="about" class="home-section">
+				<div class="story-copy text-lg sm:text-xl text-content-body leading-relaxed font-normal max-w-prose">
+					I work where cloud security, third-party risk, and identity controls meet. Across 5+ years, I have supported security programs for organizations connected to <strong class="text-black font-medium">Meta</strong> and <strong class="text-black font-medium">FIFA</strong>, with a practical focus on evidence, audit readiness, and technical control validation.
 				</div>
 
-				<div class="flex flex-col gap-6">
-					<h2
-						class="text-sm font-bold text-gray-500 uppercase tracking-widest"
-					>
-						Expertise
-					</h2>
+				<div class="proof-grid grid grid-cols-1 sm:grid-cols-3 gap-4">
+					{
+						proofPoints.map((point) => (
+							<div class="proof-metric">
+								<div class="text-2xl font-semibold text-content tracking-[-0.03em]">{point.value}</div>
+								<p class="text-sm text-content-secondary leading-snug">{point.label}</p>
+							</div>
+						))
+					}
+				</div>
+			</section>
 
-					<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-						<!-- Certifications -->
-						<div
-							class="flex flex-col gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-100  "
-						>
-							<span
-								class="text-xs font-semibold text-gray-400 uppercase tracking-wider"
-								>Certifications</span
-							>
-							<div class="flex flex-wrap gap-2">
-								<a
-									href="https://www.credly.com/badges/db9bfcab-fa49-4817-a3b1-14d5db7c4a5f/linked_in_profile"
-									target="_blank"
-									rel="noopener noreferrer"
-									class="flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-lg text-sm font-medium bg-gradient-to-r from-orange-50 to-orange-100   text-orange-700 border border-orange-200 hover:shadow-sm hover:border-orange-300 transition-all duration-300 group"
-								>
-									<span class="relative flex h-2 w-2">
-										<span
-											class="motion-safe:animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"
-										></span>
-										<span
-											class="relative inline-flex rounded-full h-2 w-2 bg-orange-500"
-										></span>
-									</span>
-									CompTIA Security+
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										width="12"
-										height="12"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										class="opacity-50 group-hover:translate-x-0.5 transition-transform"
-										><path
-											d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-										></path><polyline
-											points="15 3 21 3 21 9"
-										></polyline><line
-											x1="10"
-											y1="14"
-											x2="21"
-											y2="3"></line></svg
-									>
-								</a>
-								<span
-									class="px-3 py-1.5 rounded-lg text-sm font-medium bg-white text-gray-700 border border-gray-200  "
-									>ISO 27001 Lead Implementer</span
-								>
-								<div class="group relative">
-									<span
-										class="px-3 py-1.5 rounded-lg text-sm font-medium bg-white text-gray-600 border border-gray-200 cursor-help border-dashed"
-									>
-										Impact Day 2024
-									</span>
-									<div
-										class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10 text-center shadow-lg"
-									>
-										Deloitte<br /><span
-											class="text-gray-400"
-											>Issued Nov 2024</span
-										>
-									</div>
+			<section class="home-section">
+				<div class="section-heading">
+					<h2 class="section-label">expertise</h2>
+				</div>
+
+				<div class="expertise-panel grid grid-cols-1 sm:grid-cols-2">
+					{
+						expertiseGroups.map((group, index) => (
+							<div class={`expertise-cell flex flex-col gap-3 p-4 ${index % 2 === 0 ? "sm:border-r" : ""}`}>
+								<span class="section-label">
+									{group.label}
+								</span>
+								<div class="flex flex-wrap gap-2">
+									{group.items.map((item) => (
+										item === "CompTIA Security+" ? (
+											<a
+												href="https://www.credly.com/badges/db9bfcab-fa49-4817-a3b1-14d5db7c4a5f/linked_in_profile"
+												target="_blank"
+												rel="noopener noreferrer"
+												class="premium-chip flex items-center gap-2 text-[var(--color-accent)] border-[var(--color-accent-line)] group"
+											>
+												<span class="relative flex h-2 w-2">
+													<span class="relative inline-flex rounded-full h-2 w-2 bg-[var(--color-accent)]"></span>
+												</span>
+												{item}
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="12"
+													height="12"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													class="opacity-50 group-hover:translate-x-0.5 transition-transform"
+												>
+													<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+													<polyline points="15 3 21 3 21 9"></polyline>
+													<line x1="10" y1="14" x2="21" y2="3"></line>
+												</svg>
+											</a>
+										) : (
+											<span class="premium-chip cursor-default">
+												{item}
+											</span>
+										)
+									))}
 								</div>
 							</div>
-						</div>
+						))
+					}
+				</div>
+			</section>
 
-						<!-- Cloud & ID -->
-						<div
-							class="flex flex-col gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-100  "
-						>
-							<span
-								class="text-xs font-semibold text-gray-400 uppercase tracking-wider"
-								>Cloud & Identity</span
-							>
-							<div class="flex flex-wrap gap-2">
-								{
-									[
-										"AWS",
-										"GCP",
-										"Azure Entra ID",
-										"Zero Trust",
-										"MDM (Intune)",
-									].map((tech) => (
-										<span class="px-3 py-1.5 rounded-lg text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:border-gray-300 transition-colors cursor-default">
-											{tech}
-										</span>
-									))
-								}
-							</div>
-						</div>
-
-						<!-- Governance -->
-						<div
-							class="flex flex-col gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-100  "
-						>
-							<span
-								class="text-xs font-semibold text-gray-400 uppercase tracking-wider"
-								>Governance & Risk</span
-							>
-							<div class="flex flex-wrap gap-2">
-								{
-									[
-										"NIST 800-53",
-										"SOC 2 Type II",
-										"ISO 27001",
-										"HIPAA",
-										"PCI-DSS",
-									].map((tech) => (
-										<span class="px-3 py-1.5 rounded-lg text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:border-gray-300 transition-colors cursor-default">
-											{tech}
-										</span>
-									))
-								}
-							</div>
-						</div>
-
-						<!-- Ops & Tools -->
-						<div
-							class="flex flex-col gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-100  "
-						>
-							<span
-								class="text-xs font-semibold text-gray-400 uppercase tracking-wider"
-								>Ops, Tools & Data</span
-							>
-							<div class="flex flex-wrap gap-2">
-								{
-									[
-										"Sentinel",
-										"Splunk",
-										"Defender",
-										"Nessus",
-										"SQL",
-										"Power BI",
-									].map((tech) => (
-										<span class="px-3 py-1.5 rounded-lg text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:border-gray-300 transition-colors cursor-default">
-											{tech}
-										</span>
-									))
-								}
-							</div>
-						</div>
-					</div>
+			<section class="home-section focus-section">
+				<div class="focus-note text-lg text-content-secondary leading-relaxed">
+					<span class="section-label">current focus</span>
+					<p>
+						Currently focused on <span class="font-medium text-content">identity security</span> across AWS, Azure, and GCP, and writing about how AI agents change vendor risk, access control, and audit evidence.
+					</p>
 				</div>
 
-				<div
-					class="text-lg text-gray-600 leading-relaxed"
-				>
-					currently focused on <span
-						class="font-medium text-gray-900  "
-						>identity security</span
-					> across AWS, Azure, and GCP — and writing about the intersection of risk management and AI.
-				</div>
-
-				<div class="pt-2">
-					<h2
-						class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4"
-					>
-						Recent Writing
-					</h2>
+				<div class="writing-preview">
+					<h2 class="section-label mb-4">recent writing</h2>
 					{
 						latestThought && (
 							<a
-								href={`/thoughts/${latestThought.slug}`}
-								class="group block border-l-2 border-gray-100 pl-4 py-1 hover:border-orange-500 transition-colors duration-200"
+								href={`/thoughts/${latestThought.id}`}
+								class="feature-link-card group"
 							>
-								<h3 class="text-lg font-medium text-gray-900 group-hover:text-orange-600 transition-colors">
+								<h3 class="text-lg font-semibold text-content tracking-[-0.02em] group-hover:text-[var(--color-accent)] transition-colors">
 									{latestThought.data.title}
 								</h3>
-								<p class="text-sm text-gray-500 mt-1 line-clamp-2">
+								<p class="text-sm text-content-secondary mt-1 line-clamp-2 leading-relaxed">
 									{latestThought.data.description}
 								</p>
 							</a>
@@ -281,38 +205,36 @@ const latestThought = thoughts[0];
 					}
 					<a
 						href="/thoughts"
-						class="inline-block mt-4 text-sm font-medium text-gray-500 hover:text-black underline underline-offset-4 decoration-gray-300 hover:decoration-black transition-all"
+						class="premium-link inline-block mt-4 text-sm font-medium"
 					>
-						View all thoughts &rarr;
+						view all thoughts &rarr;
 					</a>
 				</div>
+			</section>
 
-				<div class="pt-4 border-t border-gray-100  ">
-					<h2
-						class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4"
-					>
-						Get in Touch
-					</h2>
-					<div class="flex flex-row flex-wrap gap-6 items-center">
-						{
-							socialLinks.map((link) => (
-								<a
-									href={link.url}
-									target={link.url.startsWith("mailto:") ? undefined : "_blank"}
+			<section class="contact-section">
+				<div class="contact-row">
+					<h2 class="section-label">get in touch</h2>
+					<div class="flex flex-row flex-wrap gap-5 items-center">
+					{
+						socialLinks.map((link) => (
+							<a
+								href={link.url}
+								target={link.url.startsWith("mailto:") ? undefined : "_blank"}
 								rel={link.url.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-									class={`text-base font-medium transition-colors duration-200 ${
-										link.label === "LinkedIn"
-											? "text-gray-600 hover:text-[#0077b5]  "
-											: "text-gray-900 hover:text-orange-500 transition-colors duration-200 border-b border-gray-300 hover:border-orange-500 pb-0.5"
-									}`}
-								>
-									{link.label === "Email" ? "kkeerthirao98@gmail.com" : link.label}
-								</a>
-							))
-						}
+								class={`text-base font-medium transition-colors duration-200 ${
+									link.label === "linkedin"
+										? "text-content-secondary hover:text-content"
+										: "premium-link text-content pb-0.5"
+								}`}
+							>
+								{link.label === "email" ? "kkeerthirao98@gmail.com" : link.label}
+							</a>
+						))
+					}
 					</div>
 				</div>
-			</div>
-		</div>
+			</section>
+		</main>
 	</RootLayout>
 </html>

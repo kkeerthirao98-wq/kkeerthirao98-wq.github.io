@@ -1,0 +1,32 @@
+---
+title: "Agentic AI governance starts with identity"
+description: "The latest AI risk conversation is not only about prompts. Security teams need named agent identities, scoped tools, logs, and revocation paths."
+category: 'ai'
+pubDate: '2026-06-08'
+updatedDate: '2026-06-08'
+readingTime: 3
+---
+
+The current agentic AI conversation is too focused on whether prompts can be made safe. Prompts matter, but the practical enterprise risk sits closer to identity.
+
+An agent that can read email, summarize documents, call APIs, create tickets, update records, or trigger workflows is not just a chatbot. It is a principal with access. If the agent is manipulated, misconfigured, or connected to the wrong tools, the damage depends on the identity and permissions behind it.
+
+That is why the [OWASP Top 10 for Agentic Applications 2026](https://genai.owasp.org/download/52117/?tmstv=1765059207) matters. It gives security teams language for agent-specific risks, but the control work still has to land in familiar places: IAM, logging, vendor review, data governance, and incident response.
+
+My baseline control set would be simple:
+
+**Named agent identities.** No shared user tokens. Every production agent should have an owner, purpose, environment, and permission boundary.
+
+**Tool scope by default.** The agent should only access the connectors it needs. Read-only should be the default until write access is justified.
+
+**Human approval for high-impact actions.** Sending external email, changing customer records, updating cloud resources, or modifying vendor evidence should require explicit approval or a strong compensating control.
+
+**Logs that security can use.** Capture the agent identity, user who initiated the workflow, tools called, target systems, result, and failure state. If the event cannot support investigation, it is not enough.
+
+**Revocation path.** Security teams need to disable an agent, revoke its tokens, remove tool access, and preserve evidence without waiting for a product team to redesign the workflow.
+
+This connects directly to machine identity risk. CyberArk reported that machine identities outnumber human identities by [more than 80 to 1](https://www.cyberark.com/press/machine-identities-outnumber-humans-by-more-than-80-to-1-new-report-exposes-the-exponential-threats-of-fragmented-identity-security/). Agents will add another layer of non-human identities unless teams define ownership and lifecycle controls early.
+
+It also connects to AI governance. The EU's 2026 simplification package may shift the application dates for some high-risk systems, but the underlying control work still has to be done: inventory, classification, human oversight, logging, documentation, and vendor evidence.
+
+The better question for 2026 is not "are we using AI?" Everyone is. The better question is: which identities are acting on behalf of AI systems, and can we prove they are controlled?

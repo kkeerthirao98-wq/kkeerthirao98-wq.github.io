@@ -1,5 +1,6 @@
 export const SITE_TITLE = "Keerthi Kovuru";
-export const SITE_DESCRIPTION = "Cyber Security Analyst | Cloud Security | TPRM";
+export const SITE_DESCRIPTION =
+	"Security analyst focused on identity, cloud risk, AI governance, and third-party security.";
 export const SITE_URL = "https://www.keerthikovuru.com";
 export const SITE_IMAGE = "/images/ogimage.png";
 
@@ -10,26 +11,26 @@ export interface MenuItem {
 
 export const menuItems: MenuItem[] = [
 	{
-		label: "Home",
+		label: "home",
 		url: "/",
 	},
 	{
-		label: "Experience",
+		label: "experience",
 		url: "/experience",
 	},
 	{
-		label: "Thoughts",
+		label: "thoughts",
 		url: "/thoughts",
 	},
 ];
 
 export const socialLinks = [
 	{
-		label: "LinkedIn",
+		label: "linkedin",
 		url: "https://www.linkedin.com/in/keerthikovuru",
 	},
 	{
-		label: "Email",
+		label: "email",
 		url: "mailto:kkeerthirao98@gmail.com",
 	},
 ];

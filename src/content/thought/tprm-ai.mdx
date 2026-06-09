@@ -1,25 +1,34 @@
 ---
-title: "TPRM in the Age of AI"
-description: "Why Third-Party Risk Management is more critical than ever with the rise of AI agents and vendors."
+title: "AI vendor reviews need technical evidence, not better questionnaires"
+description: "Third-party AI risk is not solved by asking more questions. The useful signal is in logs, access boundaries, data use, model change control, and incident evidence."
 category: 'security'
 pubDate: '2026-02-16'
-updatedDate: '2026-02-16'
+updatedDate: '2026-06-08'
 readingTime: 3
 ---
 
-As organizations race to integrate AI into their workflows, the supply chain is becoming increasingly complex. Third-Party Risk Management (TPRM) is no longer just about checking compliance boxes; it's about understanding the deep-seated risks that AI vendors introduce.
+AI has made third-party risk more technical. The old questionnaire still matters, but it cannot be the whole review. If a vendor is processing sensitive data, generating security decisions, or exposing agents with tool access, the assessment needs evidence.
 
-From **data privacy** concerns to **model poisoning** and **regulatory compliance** (like the EU AI Act), the landscape is shifting. 
+The useful questions are specific:
 
-In my experience executing over 500 risk assessments, I've seen that the biggest gap often lies not in the contracts, but in the **technical evidence**. Do your vendors actually encrypt data at rest and in transit? How do they manage secrets? operationalizing cryptographic governance is key.
+1. **Data use:** Is customer data used for model training, evaluation, or human review?
+2. **Access control:** Who can see prompts, outputs, inference logs, and support tickets?
+3. **Retention:** How long are prompts, outputs, embeddings, and logs stored?
+4. **Model change control:** How are model updates tested, approved, and communicated?
+5. **Agent permissions:** Can the product read or write to connected systems, and under whose identity?
+6. **Incident evidence:** Can the vendor show detection, notification, and customer-impact workflows?
 
-### The Shift to Continuous Monitoring
+In my experience with 500+ risk assessments, the gap is usually not that a vendor refuses to answer. The gap is that the answer is policy-only. The vendor says encryption exists, but the evidence is a marketing page. The vendor says humans review outputs, but there is no auditable workflow. The vendor says data is isolated, but there is no architecture diagram or control owner.
 
-We need to move beyond questionnaires and towards **continuous monitoring** and **technical validation**. Security isn't a point-in-time check; it's a lifecycle.
+For AI vendors, I would rather see a smaller questionnaire paired with stronger artifacts:
 
-Key questions to ask your AI vendors:
-1.  **Data Segregation:** Is my data used to train your base models?
-2.  **Access Control:** who has access to the inference logs?
-3.  **Incident Response:** How quickly can you detect and notify us of a breach involving our data?
+- Data-flow diagram
+- Subprocessor list
+- Access review evidence
+- Encryption and key-management summary
+- Logging and retention policy
+- Model release/change process
+- Incident response runbook
+- Sample customer notification workflow
 
-The future of TPRM is technical, real-time, and AI-aware.
+The useful upgrade for TPRM is not longer forms. It is better evidence, tighter scoping, and continuous review when the vendor becomes part of your control surface.

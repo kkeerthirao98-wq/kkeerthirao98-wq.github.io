@@ -1,35 +1,24 @@
 ---
 import FormattedDate from "@components/misc/formatted-date.astro";
 
-function getCategoryAccentBg(category: string): string {
-	switch (category) {
-		case "ai": return "bg-yellow-400";
-		case "design": return "bg-lime-400";
-		case "product": return "bg-green-400";
-		case "engineering": return "bg-purple-400";
-		case "productivity": return "bg-pink-400";
-		case "learning": return "bg-blue-400";
-		case "opensource": return "bg-orange-400";
-		case "security": return "bg-orange-500";
-		case "thoughts": return "bg-red-400";
-		case "tools": return "bg-cyan-400";
-		case "work": return "bg-teal-400";
-		default: return "bg-gray-300";
-	}
-}
-
-const { category, title, pubDate, slug } = Astro.props;
-const accentBg = getCategoryAccentBg(category);
+const { category, title, description, pubDate, slug } = Astro.props;
 ---
 
 <a href={`/thoughts/${slug}`} class="group block">
-	<article class="relative flex flex-col gap-3 pl-6 pr-5 py-5 border border-gray-100 rounded-xl bg-white hover:bg-gray-50 overflow-hidden transition-colors duration-150">
-		<div class={`absolute left-0 top-0 bottom-0 w-[3px] ${accentBg}`}></div>
-		<h2 class="text-base font-semibold text-gray-900 leading-snug group-hover:text-orange-600 transition-colors">
-			{title}
-		</h2>
-		<p class="text-xs text-gray-400 text-right font-medium">
-			<FormattedDate date={pubDate.toString()} />
-		</p>
+	<article class="thought-row relative flex flex-col gap-2.5 py-4">
+		<div class="flex flex-row items-center justify-between gap-4 text-xs text-content-muted font-medium">
+			<span class="lowercase">{category}</span>
+			<span>
+				<FormattedDate date={pubDate.toString()} />
+			</span>
+		</div>
+		<div class="flex flex-col gap-2">
+			<h2 class="text-base sm:text-lg font-semibold text-content leading-snug tracking-[-0.018em] group-hover:text-content transition-colors duration-300 ease-[var(--ease-premium)]">
+				{title}
+			</h2>
+			<p class="text-sm text-content-secondary leading-relaxed line-clamp-2">
+				{description}
+			</p>
+		</div>
 	</article>
 </a>

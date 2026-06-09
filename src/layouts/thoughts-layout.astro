@@ -1,17 +1,25 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import { Header } from '@components/misc';
-import FormattedDate from '@components/misc/formatted-date.astro';
-import { BaseHead } from '@components/seo';
-import RootLayout from '@layouts/root-layout.astro';
-import { clsx } from '@utils/index';
+import type { CollectionEntry } from "astro:content";
+import { Header } from "@components/misc";
+import FormattedDate from "@components/misc/formatted-date.astro";
+import { BaseHead } from "@components/seo";
+import RootLayout from "@layouts/root-layout.astro";
+import { clsx } from "@utils/index";
 
-type Props = CollectionEntry<'thought'>['data'] & { ogImage?: string };
+type Props = CollectionEntry<"thought">["data"] & { ogImage?: string };
 
-const { title, description, showTldr, pubDate, updatedDate, readingTime, ogImage } = Astro.props;
+const {
+	title,
+	description,
+	showTldr,
+	pubDate,
+	updatedDate,
+	readingTime,
+	ogImage,
+} = Astro.props;
 ---
 
-<html lang='en'>
+<html lang="en">
 	<head>
 		<BaseHead
 			title={title}
@@ -24,41 +32,42 @@ const { title, description, showTldr, pubDate, updatedDate, readingTime, ogImage
 	</head>
 
 	<RootLayout>
-		<div id='navbar+title' class='flex flex-col w-full gap-8'>
+		<div id="navbar+title" class="flex flex-col w-full gap-8">
 			<Header />
 
-			<article id='blog-content' class='w-full flex flex-col gap-5'>
+			<article id="blog-content" class="w-full flex flex-col gap-5">
 				<a
-					href='/thoughts'
-					class='inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-orange-500 transition-colors w-fit py-3'>
+					href="/thoughts"
+					class="premium-link inline-flex items-center gap-1.5 text-sm w-fit py-3">
 					&larr; thoughts
 				</a>
 
-				<h1 class='text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900 leading-snug'>
+				<h1 class="article-title">
 					{title}
 				</h1>
 
-				<div class='flex flex-row items-center gap-2 text-sm text-gray-400  '>
+				<div class="flex flex-row items-center gap-2 text-sm text-content-muted">
 					<FormattedDate date={pubDate.toString()} />
 					<span>·</span>
 					<span>{readingTime} min read</span>
 				</div>
 
 				{showTldr && (
-					<p class='text-base text-gray-600 leading-relaxed border-l-2 border-orange-400 pl-4'>
+					<p class="text-base text-content-secondary leading-relaxed border-l border-[var(--color-accent)] pl-4">
 						{description}
 					</p>
 				)}
 
 				<div class={clsx(
-					'w-full prose prose-base mt-2  ',
-					'prose-p:text-gray-600 prose-p:leading-relaxed',
-					'prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-gray-900  ',
-					'prose-strong:text-gray-900 prose-strong:font-semibold',
-					'prose-a:text-orange-600 prose-a:no-underline hover:prose-a:underline',
-					'prose-ul:space-y-2 prose-ol:space-y-2',
-					'prose-img:rounded-xl prose-img:my-8',
-					'[&_:not(pre)>code]:bg-gray-100 [&_:not(pre)>code]:px-1.5 [&_:not(pre)>code]:py-0.5 [&_:not(pre)>code]:rounded [&_:not(pre)>code]:text-[0.85em] [&_:not(pre)>code]:font-normal [&_:not(pre)>code]:before:content-none [&_:not(pre)>code]:after:content-none'
+					"w-full prose prose-base mt-2",
+					"prose-p:text-content-body prose-p:leading-relaxed",
+					"prose-headings:font-semibold prose-headings:tracking-[-0.025em] prose-headings:text-content",
+					"prose-strong:text-content prose-strong:font-semibold",
+					"prose-a:text-[var(--color-accent)] prose-a:no-underline hover:prose-a:underline prose-a:underline-offset-4",
+					"prose-ul:space-y-2 prose-ol:space-y-2",
+					"prose-li:text-content-body",
+					"prose-img:rounded-xl prose-img:my-8",
+					"[&_:not(pre)>code]:bg-surface-muted [&_:not(pre)>code]:px-1.5 [&_:not(pre)>code]:py-0.5 [&_:not(pre)>code]:rounded [&_:not(pre)>code]:text-[0.85em] [&_:not(pre)>code]:font-normal [&_:not(pre)>code]:before:content-none [&_:not(pre)>code]:after:content-none"
 				)}>
 					<slot />
 				</div>

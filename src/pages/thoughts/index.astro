@@ -1,8 +1,8 @@
 ---
+import { getCollection } from "astro:content";
 import { ThoughtsItem } from "@components/cards";
 import { Header } from "@components/misc";
 import { BaseHead } from "@components/seo";
-import { getCollection } from "astro:content";
 import RootLayout from "@layouts/root-layout.astro";
 
 const thoughts = (await getCollection("thought")).sort(
@@ -15,28 +15,34 @@ const thoughts = (await getCollection("thought")).sort(
 	<head>
 		<BaseHead
 			title="thoughts"
-			description="Insights on cloud security, governance, and the future of risk management."
+			description="Practical notes on cloud security, identity, AI governance, and third-party risk."
 		/>
 	</head>
+
 	<RootLayout>
-		<div id="navbar+title" class="flex flex-col w-full gap-6">
+		<div id="navbar+title" class="page-flow">
 			<Header />
-			<h1 class="w-full text-[min(12vw,72px)] font-medium tracking-tight mb-6">
-				Thoughts
-			</h1>
+			<div class="page-hero">
+				<h1 class="page-title">
+					thoughts
+				</h1>
+			</div>
 
 			{
 				thoughts.length === 0 ? (
-					<p class="text-gray-400 text-sm">no posts yet.</p>
+					<p class="text-content-muted text-sm">No posts yet.</p>
 				) : (
-					thoughts.map((thought) => (
-						<ThoughtsItem
-							category={thought.data.category}
-							title={thought.data.title}
-							pubDate={thought.data.pubDate}
-							slug={thought.slug}
-						/>
-					))
+					<div class="thought-list">
+						{thoughts.map((thought) => (
+							<ThoughtsItem
+								category={thought.data.category}
+								title={thought.data.title}
+								description={thought.data.description}
+								pubDate={thought.data.pubDate}
+								slug={thought.id}
+							/>
+						))}
+					</div>
 				)
 			}
 		</div>
