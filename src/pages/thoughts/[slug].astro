@@ -17,7 +17,7 @@ const { thought } = Astro.props;
 const post = thought;
 const { Content } = await render(post);
 const readingTime = getReadingTime(post.body ?? "");
-const ogImage = "/images/ogimage.png";
+const ogImage = "/images/keerthi-og.png";
 ---
 
 <ThoughtsLayout {...thought.data} ogImage={ogImage} readingTime={readingTime}>
