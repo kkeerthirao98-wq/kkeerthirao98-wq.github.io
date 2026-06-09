@@ -318,7 +318,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: clamp(1.75rem, 4vw, 2.85rem);
-		margin-top: 0;
+		margin-top: clamp(4.95rem, 18vw, 5.85rem);
 	}
 
 	.home-hero {
